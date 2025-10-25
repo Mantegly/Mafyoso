@@ -1,0 +1,1417 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+ <head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mafyoso - لعبة الجريمة والغموض</title>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <style>
+    /* أساسيات التصميم المتجاوب */
+    * { 
+      box-sizing: border-box;
+    }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+    
+    img, video, iframe {
+      max-width: 100%;
+      height: auto;
+    }
+    
+    table {
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+    }
+    
+    /* media queries للهواتف */
+    @media (max-width: 768px) {
+      body {
+        font-size: 16px;
+        line-height: 1.5;
+        padding: 10px;
+      }
+      
+      .container, div, section, article {
+        width: 100% !important;
+        float: none !important;
+        margin: 10px 0;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      body {
+        font-size: 14px;
+        padding: 8px;
+      }
+      
+      h1 {
+        font-size: 1.5em;
+      }
+      
+      h2 {
+        font-size: 1.3em;
+      }
+      
+      h3 {
+        font-size: 1.1em;
+      }
+    }
+
+    /* CSS الأصلي الخاص بك يضاف هنا */
+  </style>
+</head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mafyoso - لعبة الجريمة والغموض</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a0a0a 50%, #2d1b1b 100%);
+            color: #ffffff;
+            min-height: 100%;
+            overflow-x: hidden;
+        }
+
+        /* Intro Screen Styles */
+        .intro-screen {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: radial-gradient(circle at center, #1a0a0a 0%, #0f0f23 100%);
+            position: relative;
+        }
+
+        .blood-title {
+            font-size: 5rem;
+            font-weight: 900;
+            color: #8B0000;
+            text-shadow: 0 0 20px #ff0000, 0 0 40px #ff0000;
+            margin-bottom: 20px;
+            position: relative;
+            animation: pulse 2s infinite;
+        }
+
+        .blood-drip {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 40px;
+            background: linear-gradient(to bottom, #8B0000, #660000);
+            border-radius: 0 0 50% 50%;
+            animation: drip 3s infinite;
+        }
+
+        .blood-drip::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 15px;
+            background: #8B0000;
+            border-radius: 50%;
+            animation: drop 3s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { text-shadow: 0 0 20px #ff0000, 0 0 40px #ff0000; }
+            50% { text-shadow: 0 0 30px #ff0000, 0 0 60px #ff0000, 0 0 80px #ff0000; }
+        }
+
+        @keyframes drip {
+            0%, 70% { height: 40px; opacity: 1; }
+            100% { height: 80px; opacity: 0; }
+        }
+
+        @keyframes drop {
+            0%, 70% { top: -10px; opacity: 1; }
+            100% { top: 60px; opacity: 0; }
+        }
+
+        .made-by {
+            font-size: 1rem;
+            color: #666;
+            margin-top: 40px;
+            font-style: italic;
+        }
+
+        .start-btn {
+            margin-top: 60px;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #8B0000, #DC143C);
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.4);
+        }
+
+        .start-btn:hover {
+            background: linear-gradient(45deg, #DC143C, #FF6347);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(139, 0, 0, 0.6);
+        }
+
+        .start-btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(139, 0, 0, 0.8);
+        }
+
+        /* Crime Selection Screen */
+        .crime-selection {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .crimes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .crime-card {
+            background: rgba(139, 0, 0, 0.1);
+            border: 2px solid #8B0000;
+            border-radius: 15px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .crime-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(220, 20, 60, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .crime-card:hover::before {
+            left: 100%;
+        }
+
+        .crime-card:hover {
+            transform: translateY(-5px);
+            border-color: #DC143C;
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.3);
+        }
+
+        .crime-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #DC143C;
+            margin-bottom: 15px;
+        }
+
+        .suspects-list {
+            margin: 10px 0;
+        }
+
+        .suspect-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px;
+            margin: 5px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+
+        .role-badge {
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .innocent {
+            background: rgba(46, 213, 115, 0.2);
+            color: #2ed573;
+            border: 1px solid #2ed573;
+        }
+
+        .mafioso {
+            background: rgba(255, 71, 87, 0.2);
+            color: #ff4757;
+            border: 1px solid #ff4757;
+        }
+
+        /* Phone Pass System */
+        .phone-pass {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        .player-card {
+            background: rgba(139, 0, 0, 0.1);
+            border: 3px solid #8B0000;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+        }
+
+        .player-number {
+            font-size: 2rem;
+            color: #DC143C;
+            margin-bottom: 20px;
+        }
+
+        .role-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #8B0000;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .role-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.3);
+        }
+
+        .role-name {
+            font-size: 1.3rem;
+            color: #DC143C;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .role-reveal {
+            font-size: 1.5rem;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 15px;
+            font-weight: bold;
+        }
+
+        .role-innocent {
+            background: rgba(46, 213, 115, 0.2);
+            border: 2px solid #2ed573;
+            color: #2ed573;
+        }
+
+        .role-mafioso {
+            background: rgba(255, 71, 87, 0.2);
+            border: 2px solid #ff4757;
+            color: #ff4757;
+        }
+
+        .next-btn {
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .next-btn:hover {
+            background: linear-gradient(45deg, #2a5298, #3d6cb9);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(30, 60, 114, 0.4);
+        }
+
+        /* Game Screen */
+        .game-screen {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .round-indicator {
+            text-align: center;
+            font-size: 2rem;
+            color: #DC143C;
+            margin: 20px 0;
+            text-shadow: 0 0 10px rgba(220, 20, 60, 0.5);
+        }
+
+        .evidence-card {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid #FFD700;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .evidence-title {
+            font-size: 1.5rem;
+            color: #FFD700;
+            margin-bottom: 15px;
+        }
+
+        .voting-section {
+            background: rgba(139, 0, 0, 0.1);
+            border: 2px solid #8B0000;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .vote-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .vote-btn {
+            padding: 15px 20px;
+            background: linear-gradient(45deg, #8B0000, #DC143C);
+            border: none;
+            border-radius: 15px;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .vote-btn:hover {
+            background: linear-gradient(45deg, #DC143C, #FF6347);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(139, 0, 0, 0.4);
+        }
+
+        .vote-btn:disabled {
+            background: #666;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Results Screen */
+        .results-screen {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        .victory-animation {
+            font-size: 4rem;
+            margin: 30px 0;
+            animation: bounce 2s infinite;
+        }
+
+        .defeat-animation {
+            font-size: 4rem;
+            margin: 30px 0;
+            animation: shake 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-30px); }
+            60% { transform: translateY(-15px); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+            20%, 40%, 60%, 80% { transform: translateX(10px); }
+        }
+
+        .crime-solution {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid #FFD700;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            max-width: 800px;
+        }
+
+        .back-btn {
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(45deg, #2a5298, #3d6cb9);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(30, 60, 114, 0.4);
+        }
+
+        .back-btn-small {
+            padding: 10px 20px;
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            border: none;
+            border-radius: 20px;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+        }
+
+        .back-btn-small:hover {
+            background: linear-gradient(45deg, #2a5298, #3d6cb9);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(30, 60, 114, 0.4);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid #DC143C;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .blood-title {
+                font-size: 3rem;
+            }
+            
+            .crimes-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .vote-buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body><!-- Intro Screen -->
+  <div id="introScreen" class="intro-screen">
+   <h1 class="blood-title" id="gameTitle">Mafyoso 
+    <div class="blood-drip"></div></h1>
+   <p class="made-by">made by sohail</p><button class="start-btn" onclick="showCrimeSelection()">ابدأ اللعب</button>
+  </div><!-- Crime Selection Screen -->
+  <div id="crimeSelection" class="crime-selection hidden"><button class="back-btn-small" onclick="backToHome()">← رجوع</button>
+   <h2 style="text-align: center; color: #DC143C; font-size: 2.5rem; margin-bottom: 30px;">اختر الجريمة</h2>
+   <div class="crimes-grid" id="crimesGrid"></div>
+  </div><!-- Phone Pass Screen -->
+  <div id="phonePass" class="phone-pass hidden"><button class="back-btn-small" onclick="backToCrimeSelection()">← رجوع</button>
+   <div class="player-card">
+    <div class="player-number" id="playerNumber">
+     اللاعب الأول
+    </div>
+    <div id="roleCard" class="role-card hidden">
+     <div class="role-name" id="roleName"></div>
+     <div id="roleReveal" class="role-reveal"></div>
+    </div><button id="revealBtn" class="next-btn" onclick="revealRole()">اكشف دورك</button> <button id="nextBtn" class="next-btn hidden" onclick="nextPlayer()">التالي</button>
+   </div>
+  </div><!-- Game Screen -->
+  <div id="gameScreen" class="game-screen hidden"><button class="back-btn-small" onclick="backToPhonePass()">← رجوع</button>
+   <div class="round-indicator" id="roundIndicator">
+    الجولة الأولى
+   </div>
+   <div class="evidence-card">
+    <div class="evidence-title">
+     الدليل
+    </div>
+    <div id="currentEvidence"></div>
+   </div>
+   <div class="voting-section">
+    <h3 style="text-align: center; color: #DC143C;">صوت لطرد المشتبه به</h3>
+    <div class="vote-buttons" id="voteButtons"></div>
+   </div>
+   <div id="eliminationResult" class="evidence-card hidden">
+    <div class="evidence-title">
+     نتيجة التصويت
+    </div>
+    <div id="eliminatedPlayer"></div>
+   </div>
+  </div><!-- Results Screen -->
+  <div id="resultsScreen" class="results-screen hidden">
+   <div id="gameResult"></div>
+   <div class="crime-solution">
+    <h3 style="color: #FFD700;">كيفية تنفيذ الجريمة</h3>
+    <div id="crimeSolution"></div>
+   </div><button class="back-btn" onclick="backToHome()">العودة للرئيسية</button>
+  </div>
+  <div id="loadingIndicator" class="loading hidden">
+   <div class="spinner"></div>
+   <p>جاري التحميل...</p>
+  </div>
+  <script>
+        // Game data
+        const crimeTemplates = [
+            {
+                title: "سرقة لوحة من متحف",
+                suspects: [
+                    { name: "داليا", role: "فنانة" },
+                    { name: "منير", role: "حارس" },
+                    { name: "أدهم", role: "مرمم" },
+                    { name: "رانيا", role: "منظمة معارض" }
+                ],
+                evidence: [
+                    "وُجدت آثار زيت كتان نادر على الأرض - هذا النوع يستخدم فقط في ترميم اللوحات القديمة، لكن جميع العاملين يمكنهم الوصول لمخزن المواد",
+                    "الكاميرات توقفت لمدة 17 دقيقة بالضبط - نفس المدة التي استغرقتها فعالية في الطابق السفلي حضرها جميع الموظفين",
+                    "اكتُشفت لوحة مزيفة بدقة عالية في مكان الأصلية - تقنية التزييف تتطلب خبرة فنية ومعرفة عميقة بتفاصيل اللوحة"
+                ],
+                solutions: [
+                    "استغلت داليا معرفتها الفنية لصنع نسخة مزيفة مثالية، وأثناء الفعالية استبدلت اللوحة وأخفتها في حقيبة أدواتها الفنية.",
+                    "استغل منير وصوله لجميع أنحاء المتحف وأوقف الكاميرات، ثم سرق اللوحة وأخفاها في غرفة الحراسة حتى انتهاء دوامه.",
+                    "استغل أدهم انشغال الطاقم بفعالية مجاورة وأوقف الكاميرا مؤقتًا، بدّل اللوحة بنسخة مزيفة كان قد أعدها مسبقًا وأخفاها في عربة تنظيف.",
+                    "استغلت رانيا تنظيمها للفعالية لتشتيت الانتباه، وبمساعدة شريك خارجي استبدلت اللوحة أثناء نقل المعروضات."
+                ]
+            },
+            {
+                title: "مقتل مدير بنك داخل مكتبه",
+                suspects: [
+                    { name: "سعيد", role: "حارس" },
+                    { name: "تهاني", role: "محاسبة" },
+                    { name: "كامل", role: "تقني" },
+                    { name: "لبنى", role: "سكرتيرة" }
+                ],
+                evidence: [
+                    "وُجدت بصمة غريبة على فنجان القهوة - البصمة تطابق أحد الموظفين لكنها قديمة ومشوهة، وكأنها نُسخت رقمياً",
+                    "سجل الطابعة يظهر تلاعباً في التوقيت - تم طباعة وثائق مهمة بعد وفاة المدير بساعة، لكن جميع الموظفين لديهم وصول للطابعة",
+                    "نظام الدخول سجل دخولاً بالبصمة دون تسجيل خروج - هذا يحدث فقط عند تعطيل النظام من الداخل أو استخدام بصمة مزورة"
+                ],
+                solutions: [
+                    "استغل سعيد جولاته الأمنية ودخل المكتب، وضع السم في القهوة وعدل سجل الكاميرات لإخفاء وقت دخوله الحقيقي.",
+                    "استغلت تهاني وصولها للحسابات المالية واكتشفت فساد المدير، فدست له السم في القهوة أثناء اجتماع مالي وعدلت الأوراق.",
+                    "استخدم كامل برنامجًا لنسخ بصمة قديمة ودخل المكتب خلسة، وضع السم في القهوة وغادر بعد تعديل سجل الدخول وتعطيل كاميرا الطابعة.",
+                    "استغلت لبنى معرفتها بجدول المدير ووضعت السم في قهوته الصباحية، ثم عدلت مواعيده لتأخير اكتشاف الجثة."
+                ]
+            },
+            {
+                title: "اختفاء قطعة أثرية نادرة",
+                suspects: [
+                    { name: "أمجد", role: "خبير آثار" },
+                    { name: "عبير", role: "جرد" },
+                    { name: "فادي", role: "شحن" },
+                    { name: "ليلى", role: "مفتشة جودة" }
+                ],
+                evidence: [
+                    "غادرت شحنة بنفس وزن ومقاسات القطعة المفقودة - الشحنة تحمل توقيعات رسمية من جميع المسؤولين وختم الجودة",
+                    "القطعة الأثرية خضعت لفحص مشترك قبل اختفائها بيوم واحد - الفحص تطلب حضور جميع المختصين وتم توثيقه بالكاميرات",
+                    "خزنة القطعة سليمة تماماً بدون أي كسر أو تلاعب - هذا يعني أن من أخذها يملك المفتاح الأصلي أو كان موجوداً أثناء فتحها"
+                ],
+                solutions: [
+                    "أمجد استغل خبرته لتقييم القطعة بأقل من قيمتها، ثم سرقها وباعها لجامع خاص بسعر حقيقي مرتفع.",
+                    "عبير زورت سجلات الجرد وأخفت القطعة في مخزن سري، ثم هربتها تدريجياً عبر شحنات وهمية.",
+                    "فادي هرّب القطعة ضمن شحنة رسمية باستعمال صندوق مطابق، مستغلًا توقيع عبير وفحص ليلى لتغطية الإجراء.",
+                    "ليلى استغلت فحصها للقطعة لاستبدالها بنسخة مقلدة أعدتها مسبقاً، ثم أخفت الأصلية في معداتها."
+                ]
+            },
+            {
+                title: "اختطاف رجل أعمال من فندق",
+                suspects: [
+                    { name: "طارق", role: "سائق", isMafioso: false },
+                    { name: "نادية", role: "استقبال", isMafioso: false },
+                    { name: "ربيع", role: "أمن", isMafioso: true },
+                    { name: "جنى", role: "نظافة", isMafioso: false }
+                ],
+                evidence: [
+                    "توقف الكاميرات في طابق 9",
+                    "بطاقة دخول مسروقة",
+                    "تعطيل المصعد"
+                ],
+                solution: "أوقف ربيع المصعد بين الطابقين، أدخل رجل الأعمال وفقده الوعي، تم نقله في عربة خدمة عبر ممر خلفي، واستخدم بطاقة نادية المزورة للدخول دون لفت الانتباه."
+            },
+            {
+                title: "تسميم خبير طعام في برنامج طبخ",
+                suspects: [
+                    { name: "عاصم", role: "طباخ", isMafioso: false },
+                    { name: "نهى", role: "منظمة إنتاج", isMafioso: false },
+                    { name: "طلال", role: "مساعد طهي", isMafioso: true },
+                    { name: "ريم", role: "متذوقة", isMafioso: false }
+                ],
+                evidence: [
+                    "مادة سامة من أصل نباتي",
+                    "طعام مُعد مسبقًا",
+                    "المطبخ خضع لفحص صحي"
+                ],
+                solution: "دس طلال السم في إحدى التوابل الطبيعية التي لم تُفحص مخبريًا، وخلطها في طبق التحكيم مباشرة قبل التقديم. استغل انشغال الطاقم في التصوير المباشر."
+            },
+            {
+                title: "اختفاء وثائق حكومية سرية",
+                suspects: [
+                    { name: "هاني", role: "أرشفة", isMafioso: false },
+                    { name: "لبنى", role: "محللة بيانات", isMafioso: false },
+                    { name: "كمال", role: "مندوب خارجي", isMafioso: true },
+                    { name: "سعاد", role: "مسؤولة خزنة", isMafioso: false }
+                ],
+                evidence: [
+                    "آثار يد على مغلف الوثائق",
+                    "دخول خزنة رسمي",
+                    "جهاز مسح ضوئي غير مصرح به"
+                ],
+                solution: "استغل كمال زيارة رسمية، وطلب ملفات للفحص ثم استخدم ماسحًا ضوئيًا صغيرًا ضمن أوراقه. طبع نسخة مزورة وترك الأصل خلفه، ثم عاد بعد يومين وأخذ الأصل بهدوء."
+            },
+            {
+                title: "سرقة مجوهرات من خزنة عائلية",
+                suspects: [
+                    { name: "مايا", role: "ابنة العائلة", isMafioso: false },
+                    { name: "مراد", role: "خادم قديم", isMafioso: false },
+                    { name: "رولا", role: "محامية", isMafioso: true },
+                    { name: "سمير", role: "فني صيانة", isMafioso: false }
+                ],
+                evidence: [
+                    "لا يوجد كسر بالقفل",
+                    "آثار قفازات",
+                    "سجل دخول غير واضح"
+                ],
+                solution: "رولا كانت تملك إذنًا قانونيًا للاطلاع على محتوى الخزنة. استغلت زيارة الصيانة مع سمير لتغافل الجميع، وفتحت الخزنة بالقانون، ثم استبدلت المجوهرات بأخرى مقلدة وغادرت بهدوء."
+            },
+            {
+                title: "جريمة في القصر الملكي",
+                suspects: [
+                    { name: "أحمد", role: "حارس شخصي", isMafioso: false },
+                    { name: "فاطمة", role: "خادمة", isMafioso: false },
+                    { name: "محمد", role: "طباخ", isMafioso: true },
+                    { name: "عائشة", role: "مستشارة", isMafioso: false }
+                ],
+                evidence: [
+                    "سم في الطعام الملكي",
+                    "مفاتيح مفقودة من المطبخ",
+                    "آثار أقدام غريبة"
+                ],
+                solution: "استغل محمد وصوله للمطبخ الملكي ووضع السم في الطعام المخصص للملك، ثم أخفى المفاتيح لتأخير اكتشاف الجريمة."
+            },
+            {
+                title: "اختفاء عالم من مختبره",
+                suspects: [
+                    { name: "سارة", role: "مساعدة باحث", isMafioso: false },
+                    { name: "يوسف", role: "فني مختبر", isMafioso: false },
+                    { name: "نور", role: "أمن المختبر", isMafioso: true },
+                    { name: "خالد", role: "منظف", isMafioso: false }
+                ],
+                evidence: [
+                    "كاميرات معطلة لمدة ساعة",
+                    "بطاقة دخول مستخدمة بعد منتصف الليل",
+                    "آثار صراع في المختبر"
+                ],
+                solution: "استغل نور منصبه الأمني لتعطيل الكاميرات واختطاف العالم من مختبره، ثم نقله خارج المبنى باستخدام بطاقة الدخول الخاصة به."
+            },
+            {
+                title: "سرقة من بنك في وضح النهار",
+                suspects: [
+                    { name: "علي", role: "موظف بنك", isMafioso: false },
+                    { name: "مريم", role: "عميلة", isMafioso: false },
+                    { name: "حسام", role: "حارس أمن", isMafioso: true },
+                    { name: "ليلى", role: "مديرة فرع", isMafioso: false }
+                ],
+                evidence: [
+                    "إنذار الأمان لم يعمل",
+                    "كاميرات موجهة في اتجاه خاطئ",
+                    "باب الخزنة مفتوح بمفتاح أصلي"
+                ],
+                solution: "حسام عطل نظام الإنذار ووجه الكاميرات بعيداً، ثم استخدم مفتاح الخزنة الاحتياطي لسرقة الأموال أثناء فترة الذروة."
+            },
+            {
+                title: "قتل في مسرح الأوبرا",
+                suspects: [
+                    { name: "ياسمين", role: "مطربة", isMafioso: false },
+                    { name: "عمر", role: "مخرج", isMafioso: false },
+                    { name: "سلمى", role: "فنية إضاءة", isMafioso: true },
+                    { name: "كريم", role: "عازف", isMafioso: false }
+                ],
+                evidence: [
+                    "انقطاع الكهرباء لثوانٍ معدودة",
+                    "حبل مقطوع من المسرح",
+                    "آثار دم على معدات الإضاءة"
+                ],
+                solution: "استغلت سلمى انقطاع الإضاءة المؤقت الذي دبرته، وأسقطت إحدى معدات الإضاءة الثقيلة على الضحية باستخدام حبل مقطوع مسبقاً."
+            },
+            {
+                title: "اختفاء طفل من حديقة الألعاب",
+                suspects: [
+                    { name: "منى", role: "مشرفة ألعاب", isMafioso: false },
+                    { name: "سامي", role: "بائع بالونات", isMafioso: false },
+                    { name: "رامي", role: "حارس أمن", isMafioso: true },
+                    { name: "دينا", role: "منظفة", isMafioso: false }
+                ],
+                evidence: [
+                    "كاميرات المدخل الرئيسي معطلة",
+                    "بالون أحمر وجد بالقرب من المخرج الخلفي",
+                    "آثار أقدام صغيرة تؤدي للخارج"
+                ],
+                solution: "رامي عطل كاميرات المدخل الرئيسي وأخذ الطفل من المخرج الخلفي، مستخدماً بالوناً أحمر لجذب انتباه الطفل وإقناعه بالذهاب معه."
+            },
+            {
+                title: "سرقة لوحات من معرض فني",
+                suspects: [
+                    { name: "هدى", role: "ناقدة فنية", isMafioso: false },
+                    { name: "طارق", role: "حارس ليلي", isMafioso: false },
+                    { name: "نادر", role: "فني تركيب", isMafioso: true },
+                    { name: "سهى", role: "مرشدة سياحية", isMafioso: false }
+                ],
+                evidence: [
+                    "أدوات تركيب متروكة بالقرب من اللوحات",
+                    "نظام الإنذار معطل من الداخل",
+                    "آثار أقدام تؤدي لمخرج الطوارئ"
+                ],
+                solution: "استغل نادر عمله كفني تركيب للبقاء في المعرض بعد ساعات العمل، عطل نظام الإنذار من الداخل وسرق اللوحات عبر مخرج الطوارئ."
+            },
+            {
+                title: "قتل في قطار الشرق السريع",
+                suspects: [
+                    { name: "جمال", role: "مضيف قطار", isMafioso: false },
+                    { name: "نهال", role: "راكبة", isMafioso: false },
+                    { name: "وليد", role: "مفتش تذاكر", isMafioso: true },
+                    { name: "غادة", role: "طبيبة", isMafioso: false }
+                ],
+                evidence: [
+                    "تذكرة مزورة وجدت في مقصورة الضحية",
+                    "سم سريع المفعول في كوب الشاي",
+                    "باب المقصورة مقفل من الخارج"
+                ],
+                solution: "وليد استخدم مفتاح المقصورة الرئيسي للدخول، وضع السم في شاي الضحية، ثم أقفل الباب من الخارج وترك تذكرة مزورة لتضليل التحقيق."
+            },
+            {
+                title: "اختفاء مجوهرات من فندق فاخر",
+                suspects: [
+                    { name: "ريم", role: "مديرة الفندق", isMafioso: false },
+                    { name: "أسامة", role: "حارس أمن", isMafioso: false },
+                    { name: "لينا", role: "خادمة الغرف", isMafioso: true },
+                    { name: "فادي", role: "بواب", isMafioso: false }
+                ],
+                evidence: [
+                    "مفتاح الغرفة الرئيسي مفقود",
+                    "خزنة الغرفة مفتوحة بدون كسر",
+                    "آثار تنظيف حديثة في الغرفة"
+                ],
+                solution: "لينا استخدمت مفتاح الغرفة الرئيسي للدخول أثناء غياب النزيل، فتحت الخزنة باستخدام الرقم السري الذي لاحظته، وسرقت المجوهرات ثم نظفت الغرفة لإخفاء الأدلة."
+            },
+            {
+                title: "قتل في مطعم راقي",
+                suspects: [
+                    { name: "شيف حسن", role: "طباخ رئيسي", isMafioso: false },
+                    { name: "مايا", role: "نادلة", isMafioso: false },
+                    { name: "كمال", role: "مدير المطعم", isMafioso: true },
+                    { name: "سلوى", role: "محاسبة", isMafioso: false }
+                ],
+                evidence: [
+                    "فاتورة معدلة على طاولة الضحية",
+                    "كاميرات المطعم معطلة لمدة 10 دقائق",
+                    "سم في كأس النبيذ الخاص"
+                ],
+                solution: "كمال عطل الكاميرات مؤقتاً ووضع السم في كأس النبيذ الخاص بالضحية، ثم عدل الفاتورة لإخفاء دليل على خلاف مالي بينهما."
+            },
+            {
+                title: "سرقة من متجر مجوهرات",
+                suspects: [
+                    { name: "عبدالله", role: "صاحب المتجر", isMafioso: false },
+                    { name: "فريدة", role: "بائعة", isMafioso: false },
+                    { name: "محمود", role: "حارس أمن", isMafioso: true },
+                    { name: "نورا", role: "عميلة", isMafioso: false }
+                ],
+                evidence: [
+                    "إنذار الأمان لم يعمل",
+                    "كاميرات موجهة للأسفل",
+                    "خزنة مفتوحة بمفتاح أصلي"
+                ],
+                solution: "محمود عطل نظام الإنذار ووجه الكاميرات للأسفل، ثم استخدم مفتاح الخزنة الاحتياطي لسرقة المجوهرات أثناء نوبة عمله الليلية."
+            },
+            {
+                title: "اختفاء عالم آثار من موقع حفريات",
+                suspects: [
+                    { name: "د. أحمد", role: "رئيس البعثة", isMafioso: false },
+                    { name: "سمية", role: "مساعدة باحث", isMafioso: false },
+                    { name: "عادل", role: "حارس الموقع", isMafioso: true },
+                    { name: "ريهام", role: "مصورة", isMafioso: false }
+                ],
+                evidence: [
+                    "آثار صراع بالقرب من خيمة العالم",
+                    "سيارة مجهولة شوهدت بالقرب من الموقع",
+                    "هاتف العالم وجد محطماً"
+                ],
+                solution: "عادل اختطف العالم بعد اكتشافه لصفقة غير قانونية لبيع الآثار، حطم هاتفه ونقله بسيارة مستأجرة لمنعه من كشف الصفقة."
+            },
+            {
+                title: "قتل في نادي ليلي",
+                suspects: [
+                    { name: "DJ سامر", role: "منسق موسيقى", isMafioso: false },
+                    { name: "لارا", role: "راقصة", isMafioso: false },
+                    { name: "بسام", role: "حارس أمن", isMafioso: true },
+                    { name: "جينا", role: "بارتندر", isMafioso: false }
+                ],
+                evidence: [
+                    "كوكتيل مسموم على البار",
+                    "كاميرات الأمان معطلة في منطقة البار",
+                    "آثار عراك بالقرب من المخرج الخلفي"
+                ],
+                solution: "بسام عطل كاميرات منطقة البار ووضع السم في كوكتيل الضحية، ثم تعارك معه عند محاولة الهروب من المخرج الخلفي."
+            },
+            {
+                title: "سرقة من مكتبة نادرة",
+                suspects: [
+                    { name: "د. فاروق", role: "أمين المكتبة" },
+                    { name: "هالة", role: "باحثة" },
+                    { name: "يوسف", role: "حارس ليلي" },
+                    { name: "منال", role: "مرشدة" }
+                ],
+                evidence: [
+                    "كتب نادرة مفقودة من القسم المحظور",
+                    "نظام الإنذار معطل من الداخل",
+                    "آثار أقدام تؤدي لنافذة خلفية"
+                ],
+                solutions: [
+                    "د. فاروق استغل صلاحياته كأمين للوصول للكتب النادرة، وباعها لجامعين خاصين عبر شبكة سوداء دولية.",
+                    "هالة استغلت بحثها الأكاديمي لتصوير الكتب النادرة، ثم سرقت النسخ الأصلية وباعتها لمتاحف خاصة.",
+                    "يوسف استغل عمله كحارس ليلي لسرقة الكتب النادرة، عطل نظام الإنذار من الداخل وهرب من النافذة الخلفية.",
+                    "منال استغلت جولاتها الإرشادية لدراسة نظام الأمان، ثم عادت ليلاً وسرقت الكتب عبر طريق سري تعرفه."
+                ]
+            },
+            {
+                title: "اغتيال سفير في حفل دبلوماسي",
+                suspects: [
+                    { name: "كارلوس", role: "طباخ الحفل" },
+                    { name: "إيلينا", role: "مترجمة" },
+                    { name: "أحمد", role: "حارس شخصي" },
+                    { name: "صوفيا", role: "منسقة الحفل" }
+                ],
+                evidence: [
+                    "سم نادر من أمريكا الجنوبية وُجد في كأس النبيذ - هذا النوع من السم لا يُكتشف إلا بعد ساعات من التناول",
+                    "كاميرات الأمان سجلت حركة مشبوهة بالقرب من طاولة المشروبات - شخص يرتدي زي الخدمة لكن وجهه غير واضح",
+                    "وُجدت قفازات طبية مرمية في سلة المهملات - عليها آثار من نفس السم، لكن جميع العاملين يستخدمون قفازات مماثلة"
+                ],
+                solutions: [
+                    "كارلوس استغل وصوله للمطبخ ووضع السم في النبيذ المخصص للسفير، مستخدماً معرفته بالسموم من بلده الأصلي.",
+                    "إيلينا استغلت قربها من السفير أثناء الترجمة ووضعت السم في مشروبه عندما شتت انتباهه بسؤال مهم.",
+                    "أحمد تآمر مع جهة معادية واستغل ثقة السفير به، فوضع السم في مشروبه أثناء فترة استراحة قصيرة.",
+                    "صوفيا استغلت تنسيقها للحفل لتعرف تفاصيل الأمان، ووضعت السم في النبيذ أثناء التحضيرات النهائية."
+                ]
+            },
+            {
+                title: "سرقة أسرار عسكرية من قاعدة جوية",
+                suspects: [
+                    { name: "الرائد خالد", role: "ضابط استخبارات" },
+                    { name: "سارة", role: "محللة بيانات" },
+                    { name: "عبدالرحمن", role: "فني صيانة" },
+                    { name: "ليندا", role: "مترجمة أجنبية" }
+                ],
+                evidence: [
+                    "ملفات سرية نُسخت من الخادم الرئيسي في وقت متأخر من الليل - السجل يظهر دخولاً بصلاحيات عالية",
+                    "جهاز تخزين خارجي وُجد مخفياً في مكتب أحد الموظفين - الجهاز يحتوي على برامج تشفير متقدمة",
+                    "نظام الأمان سجل دخولاً غير مصرح به لمنطقة محظورة - تم استخدام بطاقة دخول مسروقة أو مزورة"
+                ],
+                solutions: [
+                    "الرائد خالد استغل صلاحياته العالية لنسخ الملفات السرية، وباعها لجهة أجنبية مقابل مبلغ ضخم.",
+                    "سارة استغلت وصولها لقواعد البيانات ونسخت الأسرار على جهاز تخزين مخفي، ثم سلمتها لشبكة تجسس.",
+                    "عبدالرحمن استغل عمله في الصيانة للوصول لجميع أنحاء القاعدة، وركب جهاز تنصت لسرقة المعلومات.",
+                    "ليندا استغلت عملها كمترجمة للحصول على معلومات حساسة، ثم نقلتها لبلدها الأصلي عبر رسائل مشفرة."
+                ]
+            },
+            {
+                title: "قتل عالم في مؤتمر علمي دولي",
+                suspects: [
+                    { name: "د. مايكل", role: "عالم منافس" },
+                    { name: "نانسي", role: "مساعدة بحث" },
+                    { name: "هيروشي", role: "مصور صحفي" },
+                    { name: "د. فاطمة", role: "رئيسة المؤتمر" }
+                ],
+                evidence: [
+                    "حقنة صغيرة وُجدت في سلة المهملات تحتوي على آثار سم عصبي - هذا النوع يُستخدم في الأبحاث الطبية المتقدمة",
+                    "كاميرات المؤتمر سجلت لحظة سقوط العالم فجأة أثناء إلقاء محاضرته - لكن لم تسجل من اقترب منه",
+                    "وُجدت رسالة تهديد في غرفة الفندق الخاصة بالعالم - مكتوبة بلغات متعددة وتحذر من نشر بحثه الجديد"
+                ],
+                solutions: [
+                    "د. مايكل حقن العالم بالسم أثناء مصافحته قبل المحاضرة، مستخدماً حقنة مخفية في خاتمه الخاص.",
+                    "نانسي اكتشفت أن العالم سيفضح فسادها في البحث، فحقنته بالسم أثناء تسليمه أوراق المحاضرة.",
+                    "هيروشي كان جاسوساً صناعياً، استغل التقاط الصور للاقتراب من العالم وحقنه بالسم بحقنة مخفية في الكاميرا.",
+                    "د. فاطمة خافت من أن بحث العالم سيدمر سمعة المؤتمر، فدست له السم في مشروبه قبل صعوده للمنصة."
+                ]
+            },
+            {
+                title: "اختفاء طائرة خاصة مع ركابها",
+                suspects: [
+                    { name: "الكابتن أحمد", role: "طيار رئيسي" },
+                    { name: "مارينا", role: "مضيفة طيران" },
+                    { name: "توني", role: "مهندس طيران" },
+                    { name: "د. سامي", role: "راكب - طبيب" }
+                ],
+                evidence: [
+                    "آخر إشارة راديو من الطائرة كانت تبلغ عن 'مشكلة فنية طارئة' - لكن صوت الطيار كان هادئاً وغير متوتر",
+                    "نظام تتبع GPS للطائرة توقف فجأة فوق المحيط - هذا يحدث فقط عند إيقافه يدوياً من داخل قمرة القيادة",
+                    "وُجدت خطة طيران بديلة مخفية في مكتب شركة الطيران - تؤدي لجزيرة نائية غير مسجلة في الخرائط الرسمية"
+                ],
+                solutions: [
+                    "الكابتن أحمد خطط لاختطاف الطائرة وهبط بها في جزيرة سرية، حيث احتجز الركاب لطلب فدية ضخمة.",
+                    "مارينا كانت تعمل مع شبكة إجرامية، خدرت الركاب ووجهت الطيار تحت التهديد لتغيير المسار.",
+                    "توني اكتشف عيباً خطيراً في الطائرة قبل الإقلاع، لكنه قرر إخفاءه وتسبب في تحطمها لتغطية إهماله.",
+                    "د. سامي كان يهرب من تهم جنائية، فهدد الطاقم وأجبرهم على تغيير المسار للهروب لبلد لا يسلم المجرمين."
+                ]
+            },
+            {
+                title: "سرقة تحفة أثرية من مزاد علني",
+                suspects: [
+                    { name: "السيد روبرت", role: "جامع تحف ثري" },
+                    { name: "كلارا", role: "خبيرة مزادات" },
+                    { name: "جيمس", role: "حارس أمن" },
+                    { name: "إيما", role: "مصورة فنية" }
+                ],
+                evidence: [
+                    "كاميرات الأمان سجلت انقطاعاً لمدة 3 دقائق بالضبط - نفس الوقت الذي استغرقته عملية السرقة",
+                    "صندوق التحفة الأصلي وُجد فارغاً مع قفل مفتوح بمهارة - لا توجد آثار كسر أو عنف",
+                    "نسخة مقلدة بدقة عالية وُضعت مكان الأصلية - التقليد يتطلب خبرة فنية ووقتاً طويلاً للإعداد"
+                ],
+                solutions: [
+                    "السيد روبرت دبر عملية السرقة بمساعدة فريق محترف، واستبدل التحفة بنسخة مقلدة أعدها مسبقاً.",
+                    "كلارا استغلت خبرتها لصنع نسخة مقلدة مثالية، ثم استبدلتها بالأصلية أثناء فترة المعاينة قبل المزاد.",
+                    "جيمس تآمر مع لصوص محترفين وعطل الكاميرات، ثم ساعدهم في سرقة التحفة مقابل حصة من الأرباح.",
+                    "إيما استغلت تصويرها للتحف لدراسة نظام الأمان، ثم عادت ليلاً وسرقت التحفة باستخدام معدات تصوير مزيفة."
+                ]
+            }
+        ];
+
+        // Generate crimes with random mafioso assignment
+        function generateCrimes() {
+            return crimeTemplates.map(template => {
+                const randomMafiosoIndex = Math.floor(Math.random() * template.suspects.length);
+                const suspects = template.suspects.map((suspect, index) => ({
+                    ...suspect,
+                    isMafioso: index === randomMafiosoIndex
+                }));
+                
+                return {
+                    title: template.title,
+                    suspects: suspects,
+                    evidence: template.evidence,
+                    solution: template.solutions ? template.solutions[randomMafiosoIndex] : template.solution
+                };
+            });
+        }
+
+        // Initialize crimes
+        let crimes = generateCrimes();
+
+        // Game state
+        let gameState = {
+            selectedCrime: null,
+            currentPlayerIndex: 0,
+            currentRound: 1,
+            votes: {},
+            eliminatedPlayers: [],
+            activePlayers: []
+        };
+
+        // Default configuration
+        const defaultConfig = {
+            game_title: "Mafyoso"
+        };
+
+        // Data SDK handler
+        const dataHandler = {
+            onDataChanged(data) {
+                // Handle data changes if needed
+            }
+        };
+
+        // Initialize SDKs
+        async function initializeApp() {
+            try {
+                const dataResult = await window.dataSdk.init(dataHandler);
+                if (!dataResult.isOk) {
+                    console.error("Failed to initialize data SDK");
+                }
+
+                if (window.elementSdk) {
+                    await window.elementSdk.init({
+                        defaultConfig,
+                        onConfigChange: async (config) => {
+                            const gameTitle = config.game_title || defaultConfig.game_title;
+                            document.getElementById('gameTitle').textContent = gameTitle;
+                        },
+                        mapToCapabilities: (config) => ({
+                            recolorables: [
+                                {
+                                    get: () => config.primary_color || "#8B0000",
+                                    set: (value) => {
+                                        config.primary_color = value;
+                                        window.elementSdk.setConfig({ primary_color: value });
+                                    }
+                                },
+                                {
+                                    get: () => config.secondary_color || "#1e3c72",
+                                    set: (value) => {
+                                        config.secondary_color = value;
+                                        window.elementSdk.setConfig({ secondary_color: value });
+                                    }
+                                }
+                            ],
+                            borderables: [],
+                            fontEditable: undefined,
+                            fontSizeable: undefined
+                        }),
+                        mapToEditPanelValues: (config) => new Map([
+                            ["game_title", config.game_title || defaultConfig.game_title]
+                        ])
+                    });
+                }
+            } catch (error) {
+                console.error("Initialization error:", error);
+            }
+        }
+
+        // Show crime selection screen
+        function showCrimeSelection() {
+            document.getElementById('introScreen').classList.add('hidden');
+            document.getElementById('crimeSelection').classList.remove('hidden');
+            renderCrimes();
+        }
+
+        // Render crimes grid
+        function renderCrimes() {
+            const crimesGrid = document.getElementById('crimesGrid');
+            crimesGrid.innerHTML = '';
+
+            crimes.forEach((crime, index) => {
+                const crimeCard = document.createElement('div');
+                crimeCard.className = 'crime-card';
+                crimeCard.onclick = () => selectCrime(index);
+
+                crimeCard.innerHTML = `
+                    <div class="crime-title">${crime.title}</div>
+                    <div class="suspects-list">
+                        <h4>المشتبه بهم:</h4>
+                        ${crime.suspects.map(suspect => `
+                            <div class="suspect-item">
+                                <span>${suspect.name} - ${suspect.role}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+
+                crimesGrid.appendChild(crimeCard);
+            });
+        }
+
+        // Select crime and start phone pass
+        function selectCrime(crimeIndex) {
+            gameState.selectedCrime = crimes[crimeIndex];
+            gameState.activePlayers = [...gameState.selectedCrime.suspects];
+            gameState.currentPlayerIndex = 0;
+
+            document.getElementById('crimeSelection').classList.add('hidden');
+            document.getElementById('phonePass').classList.remove('hidden');
+            showPlayerRole();
+        }
+
+        // Show current player's role
+        function showPlayerRole() {
+            const player = gameState.activePlayers[gameState.currentPlayerIndex];
+            const playerNumbers = ['الأول', 'الثاني', 'الثالث', 'الرابع'];
+            
+            document.getElementById('playerNumber').textContent = `اللاعب ${playerNumbers[gameState.currentPlayerIndex]}`;
+            document.getElementById('roleName').textContent = `${player.name} - ${player.role}`;
+            
+            // Hide role card and show reveal button
+            document.getElementById('roleCard').classList.add('hidden');
+            document.getElementById('revealBtn').classList.remove('hidden');
+            document.getElementById('nextBtn').classList.add('hidden');
+        }
+
+        // Reveal player's role
+        function revealRole() {
+            const player = gameState.activePlayers[gameState.currentPlayerIndex];
+            
+            // Show role card
+            document.getElementById('roleCard').classList.remove('hidden');
+            
+            const roleReveal = document.getElementById('roleReveal');
+            roleReveal.textContent = player.isMafioso ? 'مافيوسو' : 'بريء';
+            
+            if (player.isMafioso) {
+                roleReveal.className = 'role-reveal role-mafioso';
+            } else {
+                roleReveal.className = 'role-reveal role-innocent';
+            }
+            
+            // Hide reveal button and show next button
+            document.getElementById('revealBtn').classList.add('hidden');
+            document.getElementById('nextBtn').classList.remove('hidden');
+        }
+
+        // Next player in phone pass
+        function nextPlayer() {
+            gameState.currentPlayerIndex++;
+            
+            if (gameState.currentPlayerIndex >= gameState.activePlayers.length) {
+                startGame();
+            } else {
+                showPlayerRole();
+            }
+        }
+
+        // Start the actual game
+        function startGame() {
+            document.getElementById('phonePass').classList.add('hidden');
+            document.getElementById('gameScreen').classList.remove('hidden');
+            showCurrentRound();
+        }
+
+        // Show current round
+        function showCurrentRound() {
+            const roundNames = ['الأولى', 'الثانية', 'الثالثة'];
+            document.getElementById('roundIndicator').textContent = `الجولة ${roundNames[gameState.currentRound - 1]}`;
+            
+            // Show evidence for current round
+            const evidenceIndex = gameState.currentRound - 1;
+            document.getElementById('currentEvidence').textContent = gameState.selectedCrime.evidence[evidenceIndex];
+            
+            // Show voting buttons for active players
+            showVotingButtons();
+        }
+
+        // Show voting buttons
+        function showVotingButtons() {
+            const voteButtons = document.getElementById('voteButtons');
+            voteButtons.innerHTML = '';
+            
+            gameState.activePlayers.forEach((player, index) => {
+                if (!gameState.eliminatedPlayers.includes(index)) {
+                    const button = document.createElement('button');
+                    button.className = 'vote-btn';
+                    button.textContent = `${player.name} - ${player.role}`;
+                    button.onclick = () => votePlayer(index);
+                    voteButtons.appendChild(button);
+                }
+            });
+        }
+
+        // Vote for a player
+        async function votePlayer(playerIndex) {
+            showLoading(true);
+            
+            try {
+                // Simulate voting process
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                // For demo purposes, randomly eliminate a player
+                const randomVotes = Math.floor(Math.random() * gameState.activePlayers.length);
+                eliminatePlayer(playerIndex);
+                
+            } catch (error) {
+                showMessage('حدث خطأ في التصويت');
+            }
+            
+            showLoading(false);
+        }
+
+        // Eliminate a player
+        function eliminatePlayer(playerIndex) {
+            const eliminatedPlayer = gameState.activePlayers[playerIndex];
+            gameState.eliminatedPlayers.push(playerIndex);
+            
+            // Show elimination result
+            document.getElementById('eliminatedPlayer').textContent = 
+                `تم طرد: ${eliminatedPlayer.name} - ${eliminatedPlayer.role}`;
+            document.getElementById('eliminationResult').classList.remove('hidden');
+            
+            // Check game end conditions
+            setTimeout(() => {
+                if (eliminatedPlayer.isMafioso) {
+                    endGame(true); // Innocents win
+                } else if (gameState.currentRound >= 3) {
+                    endGame(false); // Mafioso wins
+                } else {
+                    nextRound();
+                }
+            }, 3000);
+        }
+
+        // Next round
+        function nextRound() {
+            gameState.currentRound++;
+            document.getElementById('eliminationResult').classList.add('hidden');
+            showCurrentRound();
+        }
+
+        // End game
+        function endGame(innocentsWin) {
+            document.getElementById('gameScreen').classList.add('hidden');
+            document.getElementById('resultsScreen').classList.remove('hidden');
+            
+            const gameResult = document.getElementById('gameResult');
+            
+            if (innocentsWin) {
+                gameResult.innerHTML = `
+                    <div class="victory-animation">🎉</div>
+                    <h2 style="color: #2ed573;">فاز الأبرياء!</h2>
+                    <p>تم اكتشاف المافيوسو بنجاح</p>
+                `;
+            } else {
+                gameResult.innerHTML = `
+                    <div class="defeat-animation">😈</div>
+                    <h2 style="color: #ff4757;">فاز المافيوسو!</h2>
+                    <p>نجح المافيوسو في خداع الجميع</p>
+                `;
+            }
+            
+            // Show crime solution
+            document.getElementById('crimeSolution').textContent = gameState.selectedCrime.solution;
+        }
+
+        // Back to home
+        function backToHome() {
+            // Reset game state
+            gameState = {
+                selectedCrime: null,
+                currentPlayerIndex: 0,
+                currentRound: 1,
+                votes: {},
+                eliminatedPlayers: [],
+                activePlayers: []
+            };
+            
+            // Hide all screens
+            document.getElementById('resultsScreen').classList.add('hidden');
+            document.getElementById('crimeSelection').classList.add('hidden');
+            document.getElementById('phonePass').classList.add('hidden');
+            document.getElementById('gameScreen').classList.add('hidden');
+            
+            // Show intro screen
+            document.getElementById('introScreen').classList.remove('hidden');
+        }
+
+        // Back to crime selection
+        function backToCrimeSelection() {
+            // Reset some game state
+            gameState.currentPlayerIndex = 0;
+            gameState.activePlayers = [];
+            
+            // Hide phone pass screen and show crime selection
+            document.getElementById('phonePass').classList.add('hidden');
+            document.getElementById('crimeSelection').classList.remove('hidden');
+        }
+
+        // Back to phone pass
+        function backToPhonePass() {
+            // Reset game progress but keep selected crime and players
+            gameState.currentRound = 1;
+            gameState.votes = {};
+            gameState.eliminatedPlayers = [];
+            gameState.currentPlayerIndex = 0;
+            
+            // Hide game screen and show phone pass
+            document.getElementById('gameScreen').classList.add('hidden');
+            document.getElementById('phonePass').classList.remove('hidden');
+            
+            // Reset phone pass to first player
+            showPlayerRole();
+        }
+
+        // Utility functions
+        function showMessage(message) {
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: rgba(139, 0, 0, 0.9);
+                color: white;
+                padding: 15px 20px;
+                border-radius: 10px;
+                z-index: 1000;
+                font-weight: bold;
+            `;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                document.body.removeChild(toast);
+            }, 3000);
+        }
+
+        function showLoading(show) {
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            if (show) {
+                loadingIndicator.classList.remove('hidden');
+            } else {
+                loadingIndicator.classList.add('hidden');
+            }
+        }
+
+        // Initialize app when page loads
+        document.addEventListener('DOMContentLoaded', initializeApp);
+    </script>
+<audio id="background-audio" loop autoplay>
+  <source src="mafyoso.mp3" type="audio/mpeg">
+  متصفحك لا يدعم تشغيل الصوت.
+</audio>
+
+<script>
+  const audio = document.getElementById('background-audio');
+
+  window.addEventListener('load', () => {
+    audio.play().catch(() => {
+      console.log('التشغيل التلقائي فشل، انتظر تفاعل المستخدم.');
+    });
+  });
+</script>
+
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'993ce04903a2aa2c',t:'MTc2MTM0NDU4MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
